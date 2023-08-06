@@ -9,5 +9,11 @@ Rails.application.routes.draw do
     registrations: 'users/api/v1/registrations'
   }
 
+  namespace :api do
+    namespace :v1 do
+      resources :todo_lists, only: %i[index create update destroy]
+    end
+  end
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

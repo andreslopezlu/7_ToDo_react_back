@@ -43,3 +43,5 @@ gem 'devise'
 gem 'devise-jwt'
 gem 'jsonapi-serializer'
 gem "dotenv-rails"
+
+gem 'jbuilder', '~> 2.7'

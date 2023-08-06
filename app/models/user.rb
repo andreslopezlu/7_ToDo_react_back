@@ -11,6 +11,8 @@ class User < ApplicationRecord
 
   validates :name, presence: true
 
+  has_many :todo_lists, dependent: :destroy
+
   private
 
   def add_avatar
