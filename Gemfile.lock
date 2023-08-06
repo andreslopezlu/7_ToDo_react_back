@@ -77,6 +77,10 @@ GEM
     devise-jwt (0.11.0)
       devise (~> 4.0)
       warden-jwt_auth (~> 0.8)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     dry-auto_inject (1.0.1)
       dry-core (~> 1.0)
       zeitwerk (~> 2.6)
@@ -200,6 +204,7 @@ DEPENDENCIES
   byebug
   devise
   devise-jwt
+  dotenv-rails
   jsonapi-serializer
   listen (~> 3.3)
   pg
