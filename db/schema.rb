@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_06_054115) do
+ActiveRecord::Schema.define(version: 2023_08_07_024534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "items", force: :cascade do |t|
+    t.string "description", null: false
+    t.boolean "pending", default: true, null: false
+    t.bigint "todo_list_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["todo_list_id"], name: "index_items_on_todo_list_id"
+  end
 
   create_table "todo_lists", force: :cascade do |t|
     t.string "title", null: false
@@ -39,5 +48,6 @@ ActiveRecord::Schema.define(version: 2023_08_06_054115) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "items", "todo_lists"
   add_foreign_key "todo_lists", "users"
 end
