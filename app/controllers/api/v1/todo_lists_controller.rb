@@ -1,8 +1,6 @@
 module Api
   module V1
-    class TodoListsController < ApplicationController
-      before_action :authenticate_user!
-      before_action :set_current_user
+    class TodoListsController < BaseController
 
       def index
         @todo_lists = current_user.todo_lists
@@ -22,21 +20,10 @@ module Api
 
       rescue ActiveRecord::RecordNotFound => e
         @successfully_deleted = false
-        @error = "Couldn't find the todo list"
+        @error = e.message.split(' [')[0]
       end
 
       private
-
-      attr_reader :current_user
-
-      def set_current_user
-        jwt_payload = JWT.decode(
-          request.headers['Authorization'].split(' ').last,
-          ENV['DEVISE_JWT_SECRET_KEY']
-        ).first
-
-        @current_user = User.find(jwt_payload['sub'])
-      end
 
       def todo_list_params
         params.require(:todo_list).permit(:title)
